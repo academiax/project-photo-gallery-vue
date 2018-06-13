@@ -1,22 +1,19 @@
 <template>
 
   <div>
-    <h1>{{this.$route.params.galleryId}}</h1>
-    <!--    <div class="col-xs-12 col-sm-12 thumb">
-          <h1 class="text-center">{{galleries[params.galleryId].name}}</h1>
-        </div>
-        <div class="col-xs-12 col-sm-12 thumb"
-        ng-repeat="array in galleries[params.galleryId].code track by $index">
-          <div class="col-xs-4 col-sm-4 thumb" ng-repeat="code in galleries[params.galleryId].code[$index]">
-            <a class="thumbnail" href="{{params.galleryId}}/{{code}}">
-              <img class="img-responsive img" ng-src="img/thumb/{{code}}/1.jpg" alt="">
-            </a>
-            <span>{{images[code][0]}}</span>
-          </div>
-        </div>
-
-        <div id="spacer"></div>-->
-
+    <h1>{{this.galleries[this.$route.params.galleryId].name}}</h1>
+    <div
+      v-for="(row, index) in this.galleries[this.$route.params.galleryId].code"
+      :key="index"
+    >
+      <router-link
+        v-for="(link, index) in row"
+        :key="index"
+        :to="{ path: link}"
+        append
+      >{{link}}
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -25,8 +22,30 @@ export default {
   name: 'Gallery',
   data() {
     return {
-      name: 'Gallery'
+      galleries: {
+        nps: {
+          name: 'National Parks',
+          code: [
+            ['arch', 'deat', 'yose'],
+            ['bryc', 'gran', 'josh'],
+            ['lass', 'redw', 'crat'],
+            ['cany', 'zion', 'capi'],
+            ['mesa', 'olym', 'rain'],
+            ['pinn', 'blac', 'sequ'],
+          ],
+          suffix: 'National Park',
+        },
 
+        oip: {
+          name: 'Other Inspiring Places',
+          code: [
+            ['ante', 'hors', 'nava'],
+            ['monu', 'natu', 'pink'],
+            ['hoov', 'mexi', 'diam'],
+          ],
+          suffix: '',
+        },
+      }
     }
   }
 }
