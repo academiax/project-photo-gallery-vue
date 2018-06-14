@@ -16,6 +16,7 @@
           padding="small"
           type="secondary"
           hover
+          @click="openModal(index + 1)"
         >
           <div slot="media-top">
             <img
@@ -36,6 +37,21 @@
         </vk-card>
       </div>
     </vk-grid>
+
+    <!-- modal -->
+    <vk-modal-full :show.sync="show">
+      <vk-modal-full-close
+        large
+        @click="show = false"
+      ></vk-modal-full-close>
+
+        <div
+          class="uk-background-cover uk-width-1-1@l"
+          :style="'background-image: url(http://photogallery.xaviro.com/img/highres/' + $route.params.codeId + '/' + selected + '.jpg);'"
+          v-vk-height-viewport
+        ></div>
+    </vk-modal-full>
+
   </div>
 </template>
 
@@ -51,11 +67,17 @@ export default {
     loaded(link) {
       // use vue.set, vue.delete when adding properties to allow refreshing
       Vue.set(this.spinner, link, true);
+    },
+    openModal(image) {
+      this.show = true;
+      this.selected = image;
     }
   },
   data() {
     return {
       spinner: {},
+      show: false,
+      selected: null,
       photos: {
         pinn: ['Pinnacles', ['', '', '', '', '', '']],
         josh: ['Joshua Tree', ['Joshua Tree and Boulders', 'BLM Grounds', 'BLM Grounds', 'Park Boulevard', 'Joshua Tree and Boulders', 'Joshua Tree and Boulders', 'Hidden Valley Campground', 'Hidden Valley', 'Hidden Valley', 'Barker Dam Trail', 'Barker Dam Trail', 'Barker Dam Trail', 'Indian Cove', 'Petroglyphs', 'Cholla Cactus Garden']],
