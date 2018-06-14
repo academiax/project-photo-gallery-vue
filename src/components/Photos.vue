@@ -45,7 +45,6 @@ export default {
         rain: ['Mount Rainier', ['', '', '', '', '', '']],
         olym: ['Olympic', ['', '', '', '', '', '']],
       }
-
     }
   }
 }

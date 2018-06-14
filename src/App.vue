@@ -2,7 +2,9 @@
 <template>
   <div id="app">
 
-    <Nav/>
+    <vk-sticky animation="slide-top" show-on-up>
+      <Nav/>
+    </vk-sticky>
 
     <!--NGVIEW-->
     <div class="relative">
