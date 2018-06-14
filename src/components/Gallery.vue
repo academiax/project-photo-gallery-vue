@@ -1,9 +1,7 @@
 <template>
 
   <div>
-    <h1 class="uk-margin-large-bottom uk-margin-large-top">
-      {{this.galleries[this.$route.params.galleryId].name}}
-    </h1>
+    <Title :title="galleries[this.$route.params.galleryId].name"></Title>
     <vk-grid
       divided
       gutter="small"
@@ -42,9 +40,11 @@
 
 <script>/* eslint-disable */
 import Vue from 'Vue';
+import Title from "./Title";
 
 export default {
   name: 'Gallery',
+  components: {Title},
   methods: {
     loaded(link) {
       // use vue.set, vue.delete when adding properties to allow refreshing

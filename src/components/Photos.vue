@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <h1>{{this.photos[this.$route.params.codeId][0]}}</h1>
+    <Title :title="photos[this.$route.params.codeId][0]"></Title>
     <div
       v-for="(photo, index) in this.photos[this.$route.params.codeId][1]"
       :key="index"
@@ -12,8 +12,10 @@
 </template>
 
 <script>/* eslint-disable */
+import Title from "./Title";
 export default {
   name: 'Photos',
+  components: {Title},
   data() {
     return {
       photos: {

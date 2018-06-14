@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">{{ name }}</h1>
+    <Title :title="name"></Title>
     <div class="container">
       <div class="jumbotron">
         <p class="text-justify">{{ subtitle }}</p>
@@ -21,8 +21,10 @@
 </template>
 
 <script>/* eslint-disable */
+import Title from "./Title";
 export default {
   name: 'About',
+  components: {Title},
   data() {
     return {
       name: 'About',
