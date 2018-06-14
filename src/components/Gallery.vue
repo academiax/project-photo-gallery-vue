@@ -1,40 +1,51 @@
 <template>
 
   <div>
-    <h1 class="uk-margin-large-bottom uk-margin-large-top">{{this.galleries[this.$route.params.galleryId].name}}</h1>
-      <vk-grid
-        divided
-        gutter="small"
-        v-vk-height-match="{ target: ' .uk-card' }"
-        class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center">
-          <router-link
-            v-for="(link, index) in this.galleries[this.$route.params.galleryId].code"
-            :key="index"
-            :to="{ path: link}"
-            append
-          >
-            <vk-card
-              padding="small"
-              type="secondary"
-              hover
-            >
-              <div slot="media-top">
-                <img :src="'http://photogallery.xaviro.com/img/highres/' + link + '/1.jpg'"/>
-              </div>
-              <div slot="footer">
-                <span>{{photos[link][0] + ' ' + galleries[$route.params.galleryId].suffix}}</span>
-              </div>
-            </vk-card>
-          </router-link>
-      </vk-grid>
-    </div>
+    <h1 class="uk-margin-large-bottom uk-margin-large-top">
+      {{this.galleries[this.$route.params.galleryId].name}}
+    </h1>
+    <vk-grid
+      divided
+      gutter="small"
+      v-vk-height-match="{ target: ' .uk-card' }"
+      class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center">
+      <router-link
+        v-for="(link, index) in this.galleries[this.$route.params.galleryId].code"
+        :key="index"
+        :to="{ path: link}"
+        append
+      >
+        <vk-card
+          padding="small"
+          type="secondary"
+          hover
+        >
+          <div slot="media-top">
+            <img v-on:load="update(link)" :src="'http://photogallery.xaviro.com/img/highres/' + link + '/1.jpg'"/>
+            <vk-spinner class="uk-position-absolute uk-position-center" v-if="!spinner[link]"></vk-spinner>
+          </div>
+          <div slot="footer">
+            <span>{{photos[link][0] + ' ' + galleries[$route.params.galleryId].suffix}}</span>
+          </div>
+        </vk-card>
+      </router-link>
+    </vk-grid>
+  </div>
 </template>
 
 <script>/* eslint-disable */
+import Vue from 'Vue';
 export default {
   name: 'Gallery',
+  methods: {
+    update(link) {
+      // use vue.set, vue.delete when adding properties to allow refreshing
+      Vue.set(this.spinner, link, true);
+    }
+  },
   data() {
     return {
+      spinner: {},
       galleries: {
         nps: {
           name: 'National Parks',
