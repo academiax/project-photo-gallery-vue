@@ -2,22 +2,60 @@
 
   <div>
     <Title :title="photos[this.$route.params.codeId][0]"></Title>
-    <div
-      v-for="(photo, index) in this.photos[this.$route.params.codeId][1]"
-      :key="index"
-    >{{photo}}
-    </div>
-
+    <vk-grid
+      divided
+      gutter="small"
+      v-vk-height-match
+      class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center"
+    >
+      <div
+        v-for="(photo, index) in this.photos[this.$route.params.codeId][1]"
+        :key="index"
+      >
+        <vk-card
+          padding="small"
+          type="secondary"
+          hover
+        >
+          <div slot="media-top">
+            <img
+              v-on:load="loaded($route.params.codeId + (index+1))"
+              :src="'http://photogallery.xaviro.com/img/thumb/' + $route.params.codeId + '/' + (index + 1) + '.jpg'"
+            />
+            <vk-spinner
+              class="uk-position-absolute uk-position-center"
+              v-if="!spinner[$route.params.codeId + (index+1)]"
+            ></vk-spinner>
+          </div>
+          <div
+            v-if="photo"
+            slot="footer"
+          >
+            <span>{{photo}}</span>
+          </div>
+        </vk-card>
+      </div>
+    </vk-grid>
   </div>
 </template>
 
 <script>/* eslint-disable */
+import Vue from 'Vue';
+
 import Title from "./Title";
+
 export default {
   name: 'Photos',
   components: {Title},
+  methods: {
+    loaded(link) {
+      // use vue.set, vue.delete when adding properties to allow refreshing
+      Vue.set(this.spinner, link, true);
+    }
+  },
   data() {
     return {
+      spinner: {},
       photos: {
         pinn: ['Pinnacles', ['', '', '', '', '', '']],
         josh: ['Joshua Tree', ['Joshua Tree and Boulders', 'BLM Grounds', 'BLM Grounds', 'Park Boulevard', 'Joshua Tree and Boulders', 'Joshua Tree and Boulders', 'Hidden Valley Campground', 'Hidden Valley', 'Hidden Valley', 'Barker Dam Trail', 'Barker Dam Trail', 'Barker Dam Trail', 'Indian Cove', 'Petroglyphs', 'Cholla Cactus Garden']],
