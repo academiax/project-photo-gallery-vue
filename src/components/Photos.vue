@@ -30,6 +30,18 @@
       <FullScreenPhoto
         :img-url="'http://photogallery.xaviro.com/img/highres/' + $route.params.codeId + '/' + selected + '.jpg'"
       />
+      <vk-icon-link
+        @click="nextImage"
+        icon="chevron-right"
+        class="uk-position-absolute next"
+        ratio="4"
+      ></vk-icon-link>
+      <vk-icon-link
+        @click="previousImage"
+        icon="chevron-left"
+        class="uk-position-absolute previous"
+        ratio="4"
+      ></vk-icon-link>
 
     </vk-modal-full>
 
@@ -42,10 +54,11 @@ import Vue from 'Vue';
 import Title from "./Title";
 import Photo from "./Photo";
 import FullScreenPhoto from "./FullScreenPhoto";
+import Button from "vuikit/src/library/button/elements/button";
 
 export default {
   name: 'Photos',
-  components: {FullScreenPhoto, Photo, Title},
+  components: {Button, FullScreenPhoto, Photo, Title},
   methods: {
     loaded(link) {
       // use vue.set, vue.delete when adding properties to allow refreshing
@@ -54,6 +67,20 @@ export default {
     openModal(image) {
       this.show = true;
       this.selected = image;
+    },
+    nextImage() {
+      if (this.selected >= this.photos[this.$route.params.codeId][1].length) {
+        this.selected = 1;
+      } else {
+        this.selected += 1;
+      }
+    },
+    previousImage() {
+      if (this.selected <= 1) {
+        this.selected = this.photos[this.$route.params.codeId][1].length - 1;
+      } else {
+        this.selected -= 1;
+      }
     }
   },
   data() {
@@ -98,5 +125,16 @@ export default {
 <style scoped>
   .clickable {
     cursor: pointer;
+  }
+  .next {
+    right: 2%;
+    color: white;
+    bottom: 5%;
+  }
+  .previous {
+    left: 2%;
+    color: white;
+    bottom: 5%;
+
   }
 </style>
