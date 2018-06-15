@@ -11,30 +11,12 @@
       <div
         v-for="(photo, index) in this.photos[this.$route.params.codeId][1]"
         :key="index"
+        @click="openModal(index + 1)"
       >
-        <vk-card
-          padding="small"
-          type="secondary"
-          hover
-          @click="openModal(index + 1)"
-        >
-          <div slot="media-top">
-            <img
-              v-on:load="loaded($route.params.codeId + (index+1))"
-              :src="'http://photogallery.xaviro.com/img/thumb/' + $route.params.codeId + '/' + (index + 1) + '.jpg'"
-            />
-            <vk-spinner
-              class="uk-position-absolute uk-position-center"
-              v-if="!spinner[$route.params.codeId + (index+1)]"
-            ></vk-spinner>
-          </div>
-          <div
-            v-if="photo"
-            slot="footer"
-          >
-            <span>{{photo}}</span>
-          </div>
-        </vk-card>
+        <Photo
+          :img-url="'http://photogallery.xaviro.com/img/thumb/' + $route.params.codeId + '/' + (index + 1) + '.jpg'"
+          :caption="photo"
+        />
       </div>
     </vk-grid>
 
@@ -42,14 +24,12 @@
     <vk-modal-full :show.sync="show">
       <vk-modal-full-close
         large
-        @click="show = false"
       ></vk-modal-full-close>
 
-        <div
-          class="uk-background-cover uk-width-1-1@l"
-          :style="'background-image: url(http://photogallery.xaviro.com/img/highres/' + $route.params.codeId + '/' + selected + '.jpg);'"
-          v-vk-height-viewport
-        ></div>
+      <FullScreenPhoto
+        :img-url="'http://photogallery.xaviro.com/img/highres/' + $route.params.codeId + '/' + selected + '.jpg'"
+      />
+
     </vk-modal-full>
 
   </div>
@@ -59,10 +39,12 @@
 import Vue from 'Vue';
 
 import Title from "./Title";
+import Photo from "./Photo";
+import FullScreenPhoto from "./FullScreenPhoto";
 
 export default {
   name: 'Photos',
-  components: {Title},
+  components: {FullScreenPhoto, Photo, Title},
   methods: {
     loaded(link) {
       // use vue.set, vue.delete when adding properties to allow refreshing

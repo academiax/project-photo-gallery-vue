@@ -14,25 +14,10 @@
         :to="{ path: link}"
         append
       >
-        <vk-card
-          padding="small"
-          type="secondary"
-          hover
-        >
-          <div slot="media-top">
-            <img
-              v-on:load="loaded(link)"
-              :src="'http://photogallery.xaviro.com/img/highres/' + link + '/1.jpg'"
-            />
-            <vk-spinner
-              class="uk-position-absolute uk-position-center"
-              v-if="!spinner[link]"
-            ></vk-spinner>
-          </div>
-          <div slot="footer">
-            <span>{{photos[link][0] + ' ' + galleries[$route.params.galleryId].suffix}}</span>
-          </div>
-        </vk-card>
+        <Photo
+          :img-url="'http://photogallery.xaviro.com/img/highres/' + link + '/1.jpg'"
+          :caption="photos[link][0] + ' ' + galleries[$route.params.galleryId].suffix"
+        />
       </router-link>
     </vk-grid>
   </div>
@@ -41,10 +26,11 @@
 <script>/* eslint-disable */
 import Vue from 'Vue';
 import Title from "./Title";
+import Photo from "./Photo";
 
 export default {
   name: 'Gallery',
-  components: {Title},
+  components: {Photo, Title},
   methods: {
     loaded(link) {
       // use vue.set, vue.delete when adding properties to allow refreshing
