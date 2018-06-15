@@ -1,9 +1,21 @@
 <template>
-
-  <div class="quote">
-    <cite>Photography is more than a medium for factual communication of ideas.
-      It is a creative art.</cite>
+  <div class="uk-position-fixed uk-width uk-padding-small quote">
+    <cite>“The mountains are calling and I must go.”</cite>
     <br>
-    <q>Ansel Adams</q>
+    <q>John Muir</q>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Quote',
+};
+</script>
+
+<style scoped>
+  .quote {
+    z-index: 100;
+    background: rgba(0,0,0,0.75);
+    color: white;
+  }
+</style>

@@ -23,16 +23,15 @@
 </template>
 
 <script>
-import VkCard from 'vuikit/src/library/card/components/card';
 
 export default {
   name: 'Nav',
-  components: { VkCard },
   data() {
     return {
       links: [
         { link: '/nps', display: 'National Parks' },
         { link: '/oip', display: 'Other Inspiring Places' },
+        { link: '/', display: 'Home' },
         { link: '/about', display: 'About' },
       ],
     };
