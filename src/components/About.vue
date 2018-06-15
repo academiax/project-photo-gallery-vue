@@ -21,7 +21,7 @@
               the site whenever I get new material.
               Thanks for checking it out!
             </p>
-            <p class="uk-text-left">Xavier</p>
+            <p class="uk-text-left uk-margin-remove">Xavier</p>
           </div>
         </vk-card>
       </div>
