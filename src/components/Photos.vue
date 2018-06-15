@@ -12,6 +12,7 @@
         v-for="(photo, index) in this.photos[this.$route.params.codeId][1]"
         :key="index"
         @click="openModal(index + 1)"
+        class="clickable"
       >
         <Photo
           :img-url="'http://photogallery.xaviro.com/img/thumb/' + $route.params.codeId + '/' + (index + 1) + '.jpg'"
@@ -93,3 +94,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .clickable {
+    cursor: pointer;
+  }
+</style>

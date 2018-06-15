@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-background-cover uk-width-1-1@l">
+  <div class="uk-width-1-1@l">
     <div
       class="uk-background-cover uk-width-1-1@l animate-opacity"
       :style="style"
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       style: {
-        background: 'none',
+        backgroundImage: 'none',
         opacity: 0,
       },
     };
@@ -35,14 +35,14 @@ export default {
   watch: {
     imgUrl(newImgUrl, prevImgUrl) {
       this.style = {
-        background: 'none',
+        backgroundImage: 'none',
         opacity: 0,
       };
       if (newImgUrl !== prevImgUrl) {
         const bgImg = new Image();
         bgImg.onload = () => {
           this.style = {
-            background: `url(${this.imgUrl})`,
+            backgroundImage: `url(${this.imgUrl})`,
             opacity: 1,
           };
         };
