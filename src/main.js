@@ -9,6 +9,7 @@ import '@vuikit/theme/dist/vuikit.min.css';
 
 import App from './App';
 import router from './router';
+import store from './store';
 
 // TODO import only used components https://vuikit.js.org/guide/integration
 Vue.use(Vuikit);
@@ -17,9 +18,10 @@ Vue.use(VuikitIcons);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
-new Vue({
+window.vm = new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>',
 });
