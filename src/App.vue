@@ -3,25 +3,30 @@
   <div id="app">
     <!-- sidenav-->
     <vk-offcanvas-content>
-      <!-- topnav-->
-      <vk-sticky animation="slide-top" show-on-up>
-        <Nav
-          @on-menu="isOpen = true"
-          :links="links"
-        />
-      </vk-sticky>
-      <!-- ngview -->
-      <div class="relative uk-margin-small-bottom">
-        <div class="container-fluid">
-          <div class="row-fluid no-gutter">
-            <router-view></router-view>
+      <div class="content">
+        <!-- topnav-->
+        <vk-sticky animation="slide-top" show-on-up>
+          <Nav
+            @on-menu="isOpen = true"
+            :links="links"
+          />
+        </vk-sticky>
+        <!-- ngview -->
+        <div class="relative uk-margin-small-bottom">
+          <div class="container-fluid">
+            <div class="row-fluid no-gutter">
+              <router-view></router-view>
+            </div>
           </div>
         </div>
       </div>
       <!-- footer -->
       <Footer
         v-if="$route.path !== '/'"
-        class="uk-margin-large"></Footer>
+        class="uk-margin-small footer"
+      />
+      <!-- social -->
+      <Social></Social>
       <!-- sidenav complement -->
       <vk-offcanvas overlay mode="reveal" :show.sync="isOpen">
         <vk-offcanvas-close @click="isOpen = false"></vk-offcanvas-close>
@@ -37,7 +42,11 @@
           @click="isOpen = false"
           :key="index"
         >
-          <router-link :to="link.link" class="uk-padding-small">{{link.display}}</router-link>
+          <router-link
+            :to="link.link"
+            class="uk-padding-small"
+          >{{link.display}}
+          </router-link>
         </h4>
       </vk-offcanvas>
     </vk-offcanvas-content>
@@ -47,10 +56,11 @@
 <script>/* eslint-disable */
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Social from "./components/Social";
 
 export default {
   name: 'App',
-  components: {Footer, Nav},
+  components: {Social, Footer, Nav},
   methods: {
     menuClicked() {
       console.log('worked2')
@@ -76,5 +86,24 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 100%;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  .uk-offcanvas-content {
+    display: flex ;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .content {
+    flex: 1 0 auto;
+  }
+
+  .footer {
+    flex-shrink: 0;
   }
 </style>
