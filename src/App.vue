@@ -11,13 +11,15 @@
         />
       </vk-sticky>
       <!-- ngview -->
-      <div class="relative">
+      <div class="relative uk-margin-small-bottom">
         <div class="container-fluid">
           <div class="row-fluid no-gutter">
             <router-view></router-view>
           </div>
         </div>
       </div>
+      <!-- footer -->
+      <Footer class="uk-margin-large"></Footer>
       <!-- sidenav complement -->
       <vk-offcanvas overlay mode="reveal" :show.sync="isOpen">
         <vk-offcanvas-close @click="isOpen = false"></vk-offcanvas-close>
@@ -28,7 +30,7 @@
         </div>
         <!-- routes -->
         <h4
-          class="uk-margin-medium"
+          class="uk-padding-small"
           v-for="(link, index) in links"
           @click="isOpen = false"
           :key="index"
@@ -64,10 +66,11 @@
 
 <script>/* eslint-disable */
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 export default {
   name: 'App',
-  components: {Nav},
+  components: {Footer, Nav},
   methods: {
     menuClicked() {
       console.log('worked2')
