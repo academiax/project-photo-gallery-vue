@@ -19,7 +19,9 @@
         </div>
       </div>
       <!-- footer -->
-      <Footer class="uk-margin-large"></Footer>
+      <Footer
+        v-if="$route.path !== '/'"
+        class="uk-margin-large"></Footer>
       <!-- sidenav complement -->
       <vk-offcanvas overlay mode="reveal" :show.sync="isOpen">
         <vk-offcanvas-close @click="isOpen = false"></vk-offcanvas-close>
@@ -39,28 +41,6 @@
         </h4>
       </vk-offcanvas>
     </vk-offcanvas-content>
-
-    <!-- Footer -->
-    <!--    <div class="footer-xr">
-
-          <div class="social-icons">
-
-            <ul>
-              <li class="linkedin" style="background-color: #f0f0f0">
-                <a href="https://www.linkedin.com/pub/xavier-alejandro-reyes-ochoa/82/184/b89" target="_blank">LinkedIN</a>
-              </li>
-              <li class="xaviro" style="background-color: #f0f0f0">
-                <a href="http://www.xaviro.com" target="_blank">Portfolio</a>
-              </li>
-              <li class="github" style="background-color: #f0f0f0">
-                <a href="https://github.com/xrochoa" target="_blank">Facebook</a>
-              </li>
-            </ul>
-
-          </div>
-
-        </div>-->
-
   </div>
 </template>
 
