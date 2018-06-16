@@ -1,19 +1,16 @@
 /* eslint-disable */
 <template>
   <div id="app">
-
-
+    <!-- sidenav-->
     <vk-offcanvas-content>
-
+      <!-- topnav-->
       <vk-sticky animation="slide-top" show-on-up>
         <Nav
           @on-menu="isOpen = true"
           :links="links"
         />
       </vk-sticky>
-
-
-      <!--NGVIEW-->
+      <!-- ngview -->
       <div class="relative">
         <div class="container-fluid">
           <div class="row-fluid no-gutter">
@@ -21,27 +18,24 @@
           </div>
         </div>
       </div>
-
-
+      <!-- sidenav complement -->
       <vk-offcanvas overlay mode="reveal" :show.sync="isOpen">
         <vk-offcanvas-close @click="isOpen = false"></vk-offcanvas-close>
-
+        <!-- sidenav title -->
         <div class="uk-margin-large">
           <h3 class="uk-margin-remove-bottom">Xavier Reyes Ochoa</h3>
           <h6 class="uk-margin-remove-top">HDR Photography</h6>
         </div>
-
+        <!-- routes -->
         <h4
-          class="uk-margin-small"
+          class="uk-margin-medium"
           v-for="(link, index) in links"
           @click="isOpen = false"
           :key="index"
         >
-          <router-link :to="link.link">{{link.display}}</router-link>
+          <router-link :to="link.link" class="uk-padding-small">{{link.display}}</router-link>
         </h4>
-
       </vk-offcanvas>
-
     </vk-offcanvas-content>
 
     <!-- Footer -->
