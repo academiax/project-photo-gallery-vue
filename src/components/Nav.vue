@@ -10,7 +10,12 @@
       <!-- required for spacing -->
       <vk-navbar-nav slot="center"></vk-navbar-nav>
       <vk-navbar-nav slot="right">
-        <vk-navbar-item>
+        <!-- burger menu -->
+        <vk-navbar-toggle
+          class="uk-hidden@s"
+          @click="onMenu"
+        ></vk-navbar-toggle>
+        <vk-navbar-item class="uk-visible@s">
           <router-link
             class="uk-margin-right"
             v-for="(link, index) in links"
@@ -26,15 +31,11 @@
 
 export default {
   name: 'Nav',
-  data() {
-    return {
-      links: [
-        { link: '/nps', display: 'National Parks' },
-        { link: '/oip', display: 'Other Inspiring Places' },
-        { link: '/', display: 'Home' },
-        { link: '/about', display: 'About' },
-      ],
-    };
+  methods: {
+    onMenu() {
+      this.$emit('on-menu');
+    },
   },
+  props: ['links'],
 };
 </script>

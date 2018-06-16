@@ -2,18 +2,47 @@
 <template>
   <div id="app">
 
-    <vk-sticky animation="slide-top" show-on-up>
-      <Nav/>
-    </vk-sticky>
 
-    <!--NGVIEW-->
-    <div class="relative">
-      <div class="container-fluid">
-        <div class="row-fluid no-gutter">
-          <router-view></router-view>
+    <vk-offcanvas-content>
+
+      <vk-sticky animation="slide-top" show-on-up>
+        <Nav
+          @on-menu="isOpen = true"
+          :links="links"
+        />
+      </vk-sticky>
+
+
+      <!--NGVIEW-->
+      <div class="relative">
+        <div class="container-fluid">
+          <div class="row-fluid no-gutter">
+            <router-view></router-view>
+          </div>
         </div>
       </div>
-    </div>
+
+
+      <vk-offcanvas overlay mode="reveal" :show.sync="isOpen">
+        <vk-offcanvas-close @click="isOpen = false"></vk-offcanvas-close>
+
+        <div class="uk-margin-large">
+          <h3 class="uk-margin-remove-bottom">Xavier Reyes Ochoa</h3>
+          <h6 class="uk-margin-remove-top">HDR Photography</h6>
+        </div>
+
+        <h4
+          class="uk-margin-small"
+          v-for="(link, index) in links"
+          @click="isOpen = false"
+          :key="index"
+        >
+          <router-link :to="link.link">{{link.display}}</router-link>
+        </h4>
+
+      </vk-offcanvas>
+
+    </vk-offcanvas-content>
 
     <!-- Footer -->
     <!--    <div class="footer-xr">
@@ -45,6 +74,21 @@ import Nav from "./components/Nav";
 export default {
   name: 'App',
   components: {Nav},
+  methods: {
+    menuClicked() {
+      console.log('worked2')
+    }
+  },
+  data() {
+    return {
+      isOpen: false,
+      links: [
+        {link: '/nps', display: 'National Parks'},
+        {link: '/oip', display: 'Other Inspiring Places'},
+        {link: '/about', display: 'About'},
+      ],
+    }
+  }
 };
 </script>
 
