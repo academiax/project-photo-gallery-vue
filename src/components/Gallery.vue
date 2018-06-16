@@ -26,7 +26,7 @@
 import Vue from 'Vue';
 import Title from "./Title";
 import Photo from "./Photo";
-import {mapGetters} from 'vuex'
+import {mapGetters} from 'vuex';
 
 export default {
   name: 'Gallery',
