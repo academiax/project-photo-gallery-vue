@@ -3,7 +3,7 @@
 // initial state
 const state = {
   baseUrl: 'http://photogallery.xaviro.com',
-  hires: '/img/hires/',
+  hires: '/img/highres/',
   thumb: '/img/thumb/',
   format: '.jpg',
 };
