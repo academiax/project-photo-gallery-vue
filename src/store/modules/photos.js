@@ -1,6 +1,8 @@
+/* eslint no-shadow: ["error", { "allow": ["state"] }] */
+
 // initial state
 const state = {
-  photos: [
+  all: [
     {
       id: 'pinn',
       name: 'Pinnacles',
@@ -382,37 +384,11 @@ const state = {
       ],
     },
   ],
-  galleries: [
-    {
-      id: 'nps',
-      name: 'National Parks',
-      order: [
-        'arch', 'deat', 'yose',
-        'bryc', 'gran', 'josh',
-        'lass', 'redw', 'crat',
-        'cany', 'zion', 'capi',
-        'mesa', 'olym', 'rain',
-        'pinn', 'blac', 'sequ',
-      ],
-      suffix: 'National Park',
-    },
-    {
-      id: 'oip',
-      name: 'Other Inspiring Places',
-      order: [
-        'ante', 'hors', 'nava',
-        'monu', 'natu', 'pink',
-        'hoov', 'mexi', 'diam',
-      ],
-      suffix: '',
-    },
-  ],
 };
 
 // getters
 const getters = {
-  galleries: (state, getters, rootState) => state.galleries,
-  photos: (state, getters, rootState) => state.photos,
+  getPhotosById: state => id => state.all.find(gallery => gallery.id === id),
 };
 
 // actions
