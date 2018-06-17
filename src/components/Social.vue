@@ -42,6 +42,7 @@ export default {
     margin: 0;
     float: right;
     left: 50%;
+    list-style-type: none;
   }
 
   .social-icons li {
