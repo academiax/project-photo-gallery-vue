@@ -31,10 +31,12 @@
         </div>
       </div>
       <!-- footer -->
-      <Footer
-        v-if="$route.path !== '/'"
-        class="uk-margin-small footer"
-      />
+      <transition name="fade">
+        <Footer
+          v-show="$route.path !== '/' && !routeTransitioning"
+          class="uk-margin-small footer"
+        />
+      </transition>
       <!-- social -->
       <Social></Social>
       <!-- sidenav complement -->
@@ -79,6 +81,7 @@ export default {
   data() {
     return {
       isOpen: false,
+      routeTransitioning: false,
       links: [
         {link: '/nps', display: 'National Parks'},
         {link: '/oip', display: 'Other Inspiring Places'},
@@ -86,6 +89,14 @@ export default {
       ],
     }
   },
+  watch: {
+    $route(to, from) {
+      this.routeTransitioning = true;
+      setTimeout(() => {
+        this.routeTransitioning = false;
+      }, 1000);
+    }
+  }
 };
 </script>
 
@@ -116,6 +127,8 @@ export default {
   }
 
   .footer {
+    position: relative;
+    z-index: -10;
     flex-shrink: 0;
   }
 
@@ -123,6 +136,13 @@ export default {
     position: fixed;
     width: 100vw;
     z-index: -1 !important;
+  }
+
+  .fade-enter-active {
+    transition: opacity .5s;
+  }
+  .fade-enter {
+    opacity: 0;
   }
 
 </style>
