@@ -49,5 +49,7 @@ export default {
 </script>
 
 <style scoped>
-
+  img {
+    min-height: 50px;
+  }
 </style>

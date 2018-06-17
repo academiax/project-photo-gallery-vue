@@ -5,7 +5,10 @@
     <vk-offcanvas-content>
       <div class="content">
         <!-- topnav-->
-        <vk-sticky animation="slide-top" show-on-up>
+        <vk-sticky
+          animation="slide-top"
+          show-on-up
+        >
           <Nav
             @on-menu="isOpen = true"
             :links="links"
@@ -15,7 +18,14 @@
         <div class="relative uk-margin-small-bottom">
           <div class="container-fluid">
             <div class="row-fluid no-gutter">
-              <router-view></router-view>
+              <transition
+                name="router-anim"
+                enter-active-class="animated fadeIn"
+                leave-active-class="animated fadeOut"
+              >
+                <router-view :key="$route.path"></router-view>
+              </transition>
+
             </div>
           </div>
         </div>
@@ -75,11 +85,13 @@ export default {
         {link: '/about', display: 'About'},
       ],
     }
-  }
+  },
 };
 </script>
 
 <style>
+  @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -94,7 +106,7 @@ export default {
   }
 
   .uk-offcanvas-content {
-    display: flex ;
+    display: flex;
     flex-direction: column;
     height: 100%;
   }
@@ -106,4 +118,11 @@ export default {
   .footer {
     flex-shrink: 0;
   }
+
+  .animated {
+    position: fixed;
+    width: 100vw;
+    z-index: -1 !important;
+  }
+
 </style>
