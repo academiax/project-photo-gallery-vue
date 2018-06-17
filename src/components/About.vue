@@ -6,7 +6,7 @@
       <div class="uk-width-1-3@m">
         <vk-card type="secondary">
           <div slot="media-top">
-            <Photo img-url="http://photogallery.xaviro.com/img/about.jpg" />
+            <Photo :img-url="aboutUrl" />
           </div>
           <div>
             <p class="uk-text-justify">
@@ -37,6 +37,11 @@ import Photo from './Photo';
 export default {
   name: 'About',
   components: { Photo, Title },
+  computed: {
+    aboutUrl() {
+      return `${this.$store.state.resources.baseUrl}about.jpg`;
+    },
+  },
   data() {
     return {
       name: 'About',

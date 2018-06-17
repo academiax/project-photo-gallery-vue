@@ -27,12 +27,4 @@ npm run e2e
 npm test
 ```
 
-## Image Sizes
-
-High Resolution: 1920x1200
-Thumbnail: 600x400
-Notes: 
-- Images have varying sizes due to Photomatix alignment.
-- Canvas is not cropped. Image gets a small stretch Photoshop batch processing to fit standard sizes.
-
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

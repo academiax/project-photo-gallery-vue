@@ -2,9 +2,9 @@
 
 // initial state
 const state = {
-  baseUrl: 'http://photogallery.xaviro.com',
-  hires: '/img/highres/',
-  thumb: '/img/thumb/',
+  baseUrl: 'https://raw.githubusercontent.com/xrochoa/photo-gallery-resources/master/',
+  hires: 'highres/',
+  thumb: 'thumb/',
   format: '.jpg',
 };
 
