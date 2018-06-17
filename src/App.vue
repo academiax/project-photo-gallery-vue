@@ -51,7 +51,6 @@
         <router-link
           class="uk-display-block"
           v-for="(link, index) in links"
-          @click="isOpen = false"
           :key="index"
           :to="link.link"
         >
@@ -91,6 +90,7 @@ export default {
   },
   watch: {
     $route(to, from) {
+      this.isOpen = false;
       this.routeTransitioning = true;
       setTimeout(() => {
         this.routeTransitioning = false;
