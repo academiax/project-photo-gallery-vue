@@ -77,6 +77,9 @@ export default {
       console.log('worked2')
     }
   },
+  created() {
+      this.$store.dispatch('photos/fetchAll')
+  },
   data() {
     return {
       isOpen: false,
