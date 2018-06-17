@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <Title :title="getPhotosById(id).name + ' ' + getGalleryById(galleryId).suffix"></Title>
     <vk-grid
@@ -18,7 +17,6 @@
         />
       </div>
     </vk-grid>
-
     <!-- modal -->
     <vk-modal-full :show.sync="show">
       <vk-modal-full-close
@@ -40,9 +38,7 @@
         class="uk-position-absolute previous"
         ratio="4"
       ></vk-icon-link>
-
     </vk-modal-full>
-
   </div>
 </template>
 
