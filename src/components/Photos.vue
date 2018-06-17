@@ -3,20 +3,19 @@
   <div>
     <Title :title="getPhotosById(id).name + ' ' + getGalleryById(galleryId).suffix"></Title>
     <vk-grid
-      divided
       gutter="small"
       v-vk-height-match
-      class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center"
+      class="uk-text-center"
     >
       <div
         v-for="(caption, index) in getPhotosById(id).captions"
         :key="index"
         @click="openModal(index + 1)"
-        class="clickable"
+        :class="`clickable uk-width-1-${creativeGrid[index]} uk-width-1-3@m`"
       >
         <Photo
           :img-url="getThumbUrl(id,index + 1)"
-          :caption="caption"
+          v-vk-tooltip.bottom="caption"
         />
       </div>
     </vk-grid>
@@ -49,7 +48,6 @@
 </template>
 
 <script>/* eslint-disable */
-import Vue from 'Vue';
 
 import Title from "./Title";
 import Photo from "./Photo";
@@ -101,7 +99,16 @@ export default {
   data() {
     return {
       show: false,
-      selectedImageName: null
+      selectedImageName: null,
+      creativeGrid: [
+        '1',
+        '3', '3', '3',
+        '2', '2',
+        '3', '3', '3',
+        '2', '2',
+        '4', '4', '4', '4',
+        '3', '3', '3'
+      ],
     }
   }
 }
@@ -111,15 +118,18 @@ export default {
   .clickable {
     cursor: pointer;
   }
+
   .next {
     right: 2%;
     color: white;
     bottom: 5%;
   }
+
   .previous {
     left: 2%;
     color: white;
     bottom: 5%;
 
   }
+
 </style>

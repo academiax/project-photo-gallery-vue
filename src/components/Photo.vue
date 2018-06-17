@@ -6,6 +6,7 @@
   >
     <div slot="media-top">
       <img
+        class="uk-width"
         @load="onLoad"
         :src="imgUrl"
       />
@@ -19,7 +20,7 @@
       slot="footer"
       v-if="caption"
     >
-      <span >{{caption}}</span>
+      <span>{{caption}}</span>
     </div>
   </vk-card>
 </template>
