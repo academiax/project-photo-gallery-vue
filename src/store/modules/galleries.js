@@ -7,7 +7,7 @@ const state = {
       id: 'nps',
       name: 'National Parks',
       order: [
-        'badl',
+        'badl', 'wica',
         'arch', 'deat', 'yose',
         'bryc', 'gran', 'josh',
         'lass', 'redw', 'crat',
