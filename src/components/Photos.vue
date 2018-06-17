@@ -15,7 +15,6 @@
       >
         <Photo
           :img-url="getThumbUrl(id,index + 1)"
-          v-vk-tooltip.bottom="caption"
         />
       </div>
     </vk-grid>
