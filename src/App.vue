@@ -46,18 +46,18 @@
           <h6 class="uk-margin-remove-top">HDR Photography</h6>
         </div>
         <!-- routes -->
-        <h4
-          class="uk-padding-small"
+        <router-link
+          class="uk-display-block"
           v-for="(link, index) in links"
           @click="isOpen = false"
           :key="index"
+          :to="link.link"
         >
-          <router-link
-            :to="link.link"
+          <h4
             class="uk-padding-small"
           >{{link.display}}
-          </router-link>
-        </h4>
+          </h4>
+        </router-link>
       </vk-offcanvas>
     </vk-offcanvas-content>
   </div>
