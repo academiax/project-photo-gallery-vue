@@ -33,13 +33,14 @@
 <script>
 import Title from './Title';
 import Photo from './Photo';
+import { constants } from '../constants';
 
 export default {
   name: 'About',
   components: { Photo, Title },
   computed: {
     aboutUrl() {
-      return `${this.$store.state.resources.baseUrl}about.jpg`;
+      return `${constants.BASE_URL}/about.jpg`;
     },
   },
   data() {

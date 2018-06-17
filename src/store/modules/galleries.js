@@ -1,46 +1,38 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
 
 // initial state
+import { Gallery } from '../../models/gallery';
+import { constants } from '../../constants';
+
 const state = {
-  all: [
-    {
-      id: 'nps',
-      name: 'National Parks',
-      order: [
-        'badl', 'wica',
-        'arch', 'deat', 'yose',
-        'bryc', 'gran', 'josh',
-        'lass', 'redw', 'crat',
-        'cany', 'zion', 'capi',
-        'mesa', 'olym', 'rain',
-        'pinn', 'blac', 'sequ',
-      ],
-      suffix: 'National Park',
-    },
-    {
-      id: 'oip',
-      name: 'Other Inspiring Places',
-      order: [
-        'ante', 'hors', 'nava',
-        'monu', 'natu', 'pink',
-        'hoov', 'mexi', 'diam',
-      ],
-      suffix: '',
-    },
-  ],
+  all: [],
 };
 
 // getters
 const getters = {
-  getGalleryById: state => id => state.all.find(photos => photos.id === id),
+  getGalleryById: state => (id) => {
+    const gallery = state.all.find(g => g.id === id);
+    return gallery || new Gallery();
+  },
 };
 
 // actions
-const actions = {};
+const actions = {
+  fetchAll({ commit }) {
+    fetch(`${constants.BASE_URL}/json/galleries.json`)
+      .then(response => response.json())
+      .then(data => commit('FETCH_ALL', data))
+      // eslint-disable-next-line no-console
+      .catch(error => console.log(error));
+  },
+};
 
 // mutations
-const mutations = {};
-
+const mutations = {
+  FETCH_ALL(state, galleries) {
+    state.all = galleries;
+  },
+};
 export default {
   namespaced: true,
   state,

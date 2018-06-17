@@ -2,6 +2,7 @@
 
 // initial state
 import { Photo } from '../../models/photo';
+import { constants } from '../../constants';
 
 const state = {
   all: [],
@@ -10,7 +11,7 @@ const state = {
 // getters
 const getters = {
   getPhotosById: state => (id) => {
-    const photo = state.all.find(gallery => gallery.id === id);
+    const photo = state.all.find(p => p.id === id);
     return photo || new Photo();
   },
 };
@@ -18,7 +19,7 @@ const getters = {
 // actions
 const actions = {
   fetchAll({ commit }) {
-    fetch('https://raw.githubusercontent.com/xrochoa/photo-gallery-resources/master/json/photos.json')
+    fetch(`${constants.BASE_URL}/json/photos.json`)
       .then(response => response.json())
       .then(data => commit('FETCH_ALL', data))
       // eslint-disable-next-line no-console

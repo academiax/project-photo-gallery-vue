@@ -72,13 +72,9 @@ import Social from "./components/Social";
 export default {
   name: 'App',
   components: {Social, Footer, Nav},
-  methods: {
-    menuClicked() {
-      console.log('worked2')
-    }
-  },
   created() {
-      this.$store.dispatch('photos/fetchAll')
+    this.$store.dispatch('galleries/fetchAll');
+    this.$store.dispatch('photos/fetchAll');
   },
   data() {
     return {

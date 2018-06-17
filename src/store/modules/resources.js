@@ -1,17 +1,18 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
 
 // initial state
+import { constants } from '../../constants';
+
 const state = {
-  baseUrl: 'https://raw.githubusercontent.com/xrochoa/photo-gallery-resources/master/',
-  hires: 'highres/',
-  thumb: 'thumb/',
+  hires: '/highres/',
+  thumb: '/thumb/',
   format: '.jpg',
 };
 
 // getters
 const getters = {
-  getHighResUrl: state => (id, index) => `${state.baseUrl}${state.hires}${id}/${index}${state.format}`,
-  getThumbUrl: state => (id, index) => `${state.baseUrl}${state.thumb}${id}/${index}${state.format}`,
+  getHighResUrl: state => (id, index) => `${constants.BASE_URL}${state.hires}${id}/${index}${state.format}`,
+  getThumbUrl: state => (id, index) => `${constants.BASE_URL}${state.thumb}${id}/${index}${state.format}`,
 };
 
 // actions
