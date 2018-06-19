@@ -11,7 +11,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "surge": "npm run build; cd dist; cp index.html 200.html; echo photogallery2.xaviro.com > CNAME; surge"
   },
   "dependencies": {
     "@vuikit/icons": "^0.8.1",

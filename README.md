@@ -1,6 +1,6 @@
 # photo-gallery-2
 
-> A Vue.js project
+> National Parks HDR Photo Gallery built with Vue.js
 
 ## Build Setup
 
@@ -25,6 +25,16 @@ npm run e2e
 
 # run all tests
 npm test
+```
+
+## Serve to surge
+
+``` bash
+# Host in surge
+- adds CNAME file with info for subdomain (partially configured in GoDaddy)
+- creates 200.html file for single page app
+npm run surge
+
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
