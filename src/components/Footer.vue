@@ -1,7 +1,7 @@
 <template>
   <small>
     <span >
-      Developed and designed by Xavier Reyes Ochoa.
+      Photography, design and web development by Xavier Reyes Ochoa.
       {{(new Date()).getFullYear()}}.
       All rights reserved.
     </span>
