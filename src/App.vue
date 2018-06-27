@@ -23,7 +23,18 @@
                 enter-active-class="animated fadeIn"
                 leave-active-class="animated fadeOut"
               >
-                <router-view :key="$route.path"></router-view>
+                <router-view
+                  :key="$route.path"
+                  v-title="codeId ?
+                  `${getPhotosById(codeId).name}
+                  ${galleryId === 'nps' ? 'National Park' : ''} | ${title}` :
+                  galleryId ?
+                  `${getGalleryById(galleryId).name} | ${title}` :
+                  ($route.path === '/about') ?
+                  `About | ${title}` :
+                  title"
+                >
+                </router-view>
               </transition>
 
             </div>
@@ -68,10 +79,26 @@
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Social from "./components/Social";
+import "./directives/MetaTitle";
+import {mapGetters} from 'vuex';
 
 export default {
   name: 'App',
   components: {Social, Footer, Nav},
+  computed: {
+    galleryId: function () {
+      return this.$route.params.galleryId;
+    },
+    codeId: function () {
+      return this.$route.params.codeId;
+    },
+    ...mapGetters('galleries', {
+      getGalleryById: 'getGalleryById',
+    }),
+    ...mapGetters('photos', {
+      getPhotosById: 'getPhotosById',
+    }),
+  },
   created() {
     this.$store.dispatch('galleries/fetchAll');
     this.$store.dispatch('photos/fetchAll');
@@ -85,6 +112,7 @@ export default {
         {link: '/oip', display: 'Other Inspiring Places'},
         {link: '/about', display: 'About'},
       ],
+      title: 'Xavier Reyes Ochoa - HDR Photography'
     }
   },
   watch: {
@@ -140,6 +168,7 @@ export default {
   .fade-enter-active {
     transition: opacity .5s;
   }
+
   .fade-enter {
     opacity: 0;
   }
