@@ -20,7 +20,8 @@
       slot="footer"
       v-if="caption"
     >
-      <span>{{caption}}</span>
+      <span class="highlighted"
+            v-html="caption"></span>
     </div>
   </vk-card>
 </template>
@@ -51,5 +52,8 @@ export default {
 <style scoped>
   img {
     min-height: 50px;
+  }
+  .highlighted >>> i {
+    background: #39f;
   }
 </style>

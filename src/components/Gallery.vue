@@ -28,7 +28,7 @@
       >
         <Photo
           :img-url="getThumbUrl(photosId, 1)"
-          :caption="getPhotosById(photosId).name + ' ' + getGalleryById(id).suffix"
+          :caption="caption(photosId).replace(new RegExp(filter, 'i'),'<i>' + filter + '</i>')"
         />
       </router-link>
     </vk-grid>
@@ -68,9 +68,12 @@ export default {
       // use vue.set, vue.delete when adding properties to allow refreshing
       Vue.set(this.spinner, link, true);
     },
+    caption(id) {
+      return this.getPhotosById(id).name + ' ' + this.getGalleryById(this.id).suffix;
+    },
     filtered() {
-      return this.getGalleryById(this.id).order.filter(x => {
-        return this.getPhotosById(x).name.toLowerCase().includes(this.filter.toLowerCase());
+      return this.getGalleryById(this.id).order.filter(id => {
+        return this.caption(id).includes(this.filter);
       });
     }
   }
