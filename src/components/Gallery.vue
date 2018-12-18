@@ -1,6 +1,19 @@
 <template>
   <div>
     <Title :title="getGalleryById(id).name"></Title>
+    <div class="uk-margin-large-bottom">
+      <div class="uk-inline">
+        <span class="uk-form-icon">
+           <vk-icons-search class="uk-form-icon"></vk-icons-search>
+        </span>
+        <input
+          class="uk-input"
+          type="text"
+          placeholder="Search"
+          v-model="filter"
+        />
+      </div>
+    </div>
     <vk-grid
       divided
       gutter="small"
@@ -8,8 +21,8 @@
       class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center"
     >
       <router-link
-        v-for="(photosId, index) in getGalleryById(id).order"
-        :key="index"
+        v-for="photosId in filtered()"
+        :key="photosId"
         :to="{ path: photosId}"
         append
       >
@@ -26,11 +39,16 @@
 import Vue from 'Vue';
 import Title from "./Title";
 import Photo from "./Photo";
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Gallery',
-  components: {Photo, Title},
+  data() {
+    return {
+      filter: ''
+    }
+  },
+  components: { Photo, Title },
   computed: {
     id: function () {
       return this.$route.params.galleryId;
@@ -49,6 +67,11 @@ export default {
     loaded(link) {
       // use vue.set, vue.delete when adding properties to allow refreshing
       Vue.set(this.spinner, link, true);
+    },
+    filtered() {
+      return this.getGalleryById(this.id).order.filter(x => {
+        return this.getPhotosById(x).name.toLowerCase().includes(this.filter.toLowerCase());
+      });
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <h1 class="uk-margin-large-bottom uk-margin-large-top">
+  <h1 class="uk-margin-large-top">
     <a
       class="uk-margin-small-right"
       v-if="$route.params.codeId"
