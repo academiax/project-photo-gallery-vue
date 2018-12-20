@@ -28,7 +28,7 @@
       >
         <Photo
           :img-url="getThumbUrl(photosId, 1)"
-          :caption="caption(photosId).replace(new RegExp(filter, 'i'),'<i>' + filter + '</i>')"
+          :caption="replacedCaption(photosId)"
         />
       </router-link>
     </vk-grid>
@@ -73,9 +73,14 @@ export default {
     },
     filtered() {
       return this.getGalleryById(this.id).order.filter(id => {
-        return this.caption(id).includes(this.filter);
+        return this.caption(id).toLowerCase().includes(this.filter.toLowerCase());
       });
+    },
+    replacedCaption(id) {
+      const regExp = new RegExp(this.filter, 'i');
+      return this.caption(id).replace(regExp, `<i>${this.caption(id).match(regExp)}</i>`);
     }
+
   }
 }
 </script>
