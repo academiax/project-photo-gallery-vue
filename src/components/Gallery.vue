@@ -36,7 +36,7 @@
 </template>
 
 <script>/* eslint-disable */
-import Vue from 'Vue';
+import Vue from 'vue';
 import Title from "./Title";
 import Photo from "./Photo";
 import { mapGetters } from 'vuex';
